@@ -1,0 +1,43 @@
+name: Build CircuitPython for RP2350B Core
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential git python3 python3-pip cmake ninja-build
+
+      - name: Clone CircuitPython
+        run: |
+          git clone https://github.com/adafruit/circuitpython.git
+          cd circuitpython
+          git submodule update --init --recursive
+
+      - name: Copy custom board definition
+        run: |
+          cp -r ports/raspberrypi/boards/weact_rp2350b_core \
+                circuitpython/ports/raspberrypi/boards/
+
+      - name: Build CircuitPython
+        run: |
+          cd circuitpython/ports/raspberrypi
+          make BOARD=weact_rp2350b_core -j$(nproc)
+
+      - name: Upload UF2 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: circuitpython-uf2
+          path: circuitpython/ports/raspberrypi/build-weact_rp2350b_core/firmware.uf2
