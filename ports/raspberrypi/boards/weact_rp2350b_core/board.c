@@ -1,9 +1,10 @@
-// This file is part of the CircuitPython project: https://circuitpython.org
-//
-// SPDX-FileCopyrightText: Copyright (c) 2021 Scott Shawcroft for Adafruit Industries
-//
-// SPDX-License-Identifier: MIT
+#include "py/obj.h"
+#include "py/runtime.h"
+#include "shared-bindings/microcontroller/Pin.h"
+#include "shared-bindings/board/__init__.h"
 
-#include "supervisor/board.h"
+STATIC const mp_rom_map_elem_t board_global_dict_table[] = {
+    { MP_ROM_QSTR(MP_QSTR_LED), MP_ROM_PTR(&pin_GPIO23) },
+};
 
-// Use the MP_WEAK supervisor/shared/board.c versions of routines not defined here.
+MP_DEFINE_CONST_DICT(board_module_globals, board_global_dict_table);
