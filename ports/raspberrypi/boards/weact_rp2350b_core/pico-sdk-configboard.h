@@ -4,6 +4,4 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include "supervisor/board.h"
-
-// Use the MP_WEAK supervisor/shared/board.c versions of routines not defined here.
+// Put board-specific pico-sdk definitions here. This file must exist.
