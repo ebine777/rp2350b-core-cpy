@@ -14,6 +14,6 @@
 #define DEFAULT_SPI_BUS_MOSI (&pin_GPIO28)
 
 // USB pins (D+ / D-)
-// ↓ Zephyr DTS を確認してから埋める
+// �� Zephyr DTS ���m�F���Ă��疄�߂�
 #define MICROPY_HW_USB_DM_PIN (&pin_GPIO24)
 #define MICROPY_HW_USB_DP_PIN (&pin_GPIO25)

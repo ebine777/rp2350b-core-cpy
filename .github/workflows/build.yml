@@ -11,6 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      BOARD: weact_rp2350b_core
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,16 +31,16 @@ jobs:
 
       - name: Copy custom board definition
         run: |
-          cp -r ports/raspberrypi/boards/weact_rp2350b_core \
+          cp -r ports/raspberrypi/boards/${BOARD} \
                 circuitpython/ports/raspberrypi/boards/
 
       - name: Build CircuitPython
         run: |
           cd circuitpython/ports/raspberrypi
-          make BOARD=weact_rp2350b_core -j$(nproc)
+          make BOARD=${BOARD} -j$(nproc)
 
       - name: Upload UF2 artifact
         uses: actions/upload-artifact@v4
         with:
           name: circuitpython-uf2
-          path: circuitpython/ports/raspberrypi/build-weact_rp2350b_core/firmware.uf2
+          path: circuitpython/ports/raspberrypi/build-${BOARD}/firmware.uf2
