@@ -35,6 +35,11 @@ jobs:
           cp -r ports/raspberrypi/boards/${BOARD} \
                 circuitpython/ports/raspberrypi/boards/
 
+      - name: Copy RP2350B boot_stage2 template
+        run: |
+          cp ports/raspberrypi/boards/${BOARD}/boot_stage2_rp2350b.c.jinja \
+             circuitpython/ports/raspberrypi/boot_stage2/                
+
       - name: Build CircuitPython
         run: |
           cd circuitpython/ports/raspberrypi
