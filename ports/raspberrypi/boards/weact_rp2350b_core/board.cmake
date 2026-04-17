@@ -1,0 +1,1 @@
+set(GEN_FLASH_INFO 0)
