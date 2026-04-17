@@ -37,12 +37,12 @@ jobs:
 
       - name: Ensure boot_stage2 directory exists
         run: |
-          mkdir -p circuitpython/ports/raspberrypi/boot_stage2
+          mkdir -p circuitpython/ports/raspberrypi/boards/boot_stage2
 
       - name: Copy RP2350B boot_stage2 template
         run: |
           cp ports/raspberrypi/boards/${BOARD}/boot_stage2_rp2350b.c.jinja \
-             circuitpython/ports/raspberrypi/boot_stage2/
+             circuitpython/ports/raspberrypi/boards/boot_stage2/
 
       - name: Build CircuitPython
         run: |
