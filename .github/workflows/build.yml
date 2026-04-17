@@ -35,6 +35,11 @@ jobs:
           cp -r ports/raspberrypi/boards/${BOARD} \
                 circuitpython/ports/raspberrypi/boards/
 
+      - name: Apply patch to disable flash_info
+        run: |
+          cd circuitpython
+          git apply ../ports/raspberrypi/boards/${BOARD}/disable_flash_info.patch
+
       - name: Ensure boot_stage2 directory exists
         run: |
           mkdir -p circuitpython/ports/raspberrypi/boards/boot_stage2
@@ -54,3 +59,4 @@ jobs:
         with:
           name: circuitpython-uf2
           path: circuitpython/ports/raspberrypi/build-${BOARD}/firmware.uf2
+          

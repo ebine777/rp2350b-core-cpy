@@ -1,0 +1,19 @@
+--- a/ports/raspberrypi/CMakeLists.txt
++++ b/ports/raspberrypi/CMakeLists.txt
+@@ -120,12 +120,12 @@
+ # Generate flash_info.h and stage2.c
+-if(GEN_FLASH_INFO)
+-    add_custom_command(
+-        OUTPUT flash_info.h
+-        COMMAND ${Python3_EXECUTABLE} gen_stage2.py ${CMAKE_CURRENT_BINARY_DIR}
+-        DEPENDS gen_stage2.py flash_info.toml
+-    )
+-endif()
++# Disabled for RP2350B Core (no NVM)
++# if(GEN_FLASH_INFO)
++#     add_custom_command(
++#         OUTPUT flash_info.h
++#         COMMAND ${Python3_EXECUTABLE} gen_stage2.py ${CMAKE_CURRENT_BINARY_DIR}
++#         DEPENDS gen_stage2.py flash_info.toml
++#     )
++# endif()
